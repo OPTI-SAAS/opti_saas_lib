@@ -24,11 +24,25 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@optisaas'
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      - run: npm whoami || true
-      - run: npm config get //registry.npmjs.org/:_authToken || true
-      - name: Publish (Trusted Publishing)
+      
+      - name: Update npm (Trusted Publishing requires newer npm)
+        run: npm install -g npm@latest
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # Optional debug (kept harmless)
+      - name: Debug versions
+        run: |
+          node -v
+          npm -v
+          pnpm -v
+
+      # IMPORTANT: tokenless publish for Trusted Publishing
+      - name: Publish to npm (Trusted Publishing / OIDC)
         env:
           NODE_AUTH_TOKEN: ""
           NPM_TOKEN: ""
