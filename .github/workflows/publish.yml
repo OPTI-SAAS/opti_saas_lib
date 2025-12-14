@@ -26,18 +26,6 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm publish --provenance --access public
-
-      - name: Get version from package.json
-        id: package-version
-        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.package-version.outputs.VERSION }}
-          release_name: Release v${{ steps.package-version.outputs.VERSION }}
-          draft: false
-          prerelease: false
+      - run: npm whoami || true
+      - run: npm config get //registry.npmjs.org/:_authToken || true
+      - run: npm publish --provenance --access public

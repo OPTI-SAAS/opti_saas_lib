@@ -1,6 +1,6 @@
 {
   "name": "@optisaas/opti-saas-lib",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "description": "A shared library for Opti SaaS applications",
   "license": "MIT",
