@@ -1,0 +1,57 @@
+# Test files
+test/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__/
+
+# Development files
+.github/
+.vscode/
+.idea/
+
+# Config files
+tsconfig.json
+tsconfig.*.json
+.eslintrc
+.eslintrc.json
+.prettierrc
+.prettierrc.json
+
+# Build tools
+*.tgz
+*.log
+
+# CI/CD
+.travis.yml
+.circleci/
+azure-pipelines.yml
+
+# Documentation
+*.md
+!README.md
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Yarn
+.yarn/
+yarn.lock
+.yarnrc.yml
+
+# npm
+.npmrc
+package-lock.json
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+*~
