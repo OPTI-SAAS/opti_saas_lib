@@ -1,6 +1,20 @@
 import { IOcrBlock } from './ocr.models';
 
 /**
+ * Interface for data extraction from OCR text.
+ * Used by pipeline to access parser extraction logic.
+ */
+export interface IDataExtractor<T> {
+  /**
+   * Extracts structured data from OCR text.
+   * @param rawText Raw text extracted by OCR
+   * @param blocks Text blocks with positions
+   * @returns Structured data
+   */
+  extractData(rawText: string, blocks: IOcrBlock[]): T;
+}
+
+/**
  * Document parsing result.
  */
 export interface IParseResult<T> {

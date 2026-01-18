@@ -38,15 +38,25 @@ export interface IOcrBlock {
 }
 
 /**
+ * Supported document types as const array.
+ * Allows iteration while maintaining type safety.
+ */
+export const OCR_DOCUMENT_TYPES = [
+  'invoice',
+  'delivery_note',
+  'quote',
+  'purchase_order',
+  'prescription',
+  'insurance_card',
+  'generic',
+] as const;
+
+/**
  * Supported document types.
  * Used to select the optimal OCR provider.
+ * Derived from OCR_DOCUMENT_TYPES for type safety.
  */
-export type OcrDocumentType =
-  | 'invoice'
-  | 'delivery_note'
-  | 'prescription'
-  | 'insurance_card'
-  | 'generic';
+export type OcrDocumentType = (typeof OCR_DOCUMENT_TYPES)[number];
 
 /**
  * OCR error codes.

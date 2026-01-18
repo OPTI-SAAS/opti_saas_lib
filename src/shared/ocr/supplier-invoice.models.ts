@@ -17,6 +17,9 @@ export interface IInvoiceLine {
   /** Unit price excluding tax */
   unitPriceHT: number;
 
+  /** Discount rate (0.10 for 10%) */
+  discountRate: number | null;
+
   /** Total price excluding tax for this line */
   totalHT: number;
 
