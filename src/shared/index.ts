@@ -1,3 +1,5 @@
 export * from './config'
 export * from './types'
 export * from './ocr'
+export * from './models'
+export * from './product-matching'
