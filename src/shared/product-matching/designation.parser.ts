@@ -19,6 +19,11 @@ import {
 } from './frame.patterns';
 import { LENS_PATTERNS } from './lens.patterns';
 import { CONTACT_LENS_PATTERNS } from './contact-lens.patterns';
+import { isOphthalmicLens, parseDesignationWithLens } from './lens.parser';
+import { isContactLens, parseDesignationWithContactLens } from './contact-lens.parser';
+import { isAccessory, parseDesignationWithAccessory } from'./accessory.parser';
+import { isSafetyGlasses, parseDesignationWithSafety } from'./safety.parser';
+import { isClipOn, parseDesignationWithClipOn } from'./clip-on.parser';
 
 /**
  * Normalizes a brand name for comparison (uppercase, no special chars).
@@ -722,14 +727,6 @@ export function parseUniversalDesignation(designation: string): IParsedProductIn
     return createEmptyParsedProductInfo('');
   }
 
-  // Import detection functions dynamically to avoid circular deps
-  // These will be called at runtime
-  const { isOphthalmicLens, parseDesignationWithLens } = require('./lens.parser');
-  const { isContactLens, parseDesignationWithContactLens } = require('./contact-lens.parser');
-  const { isAccessory, parseDesignationWithAccessory } = require('./accessory.parser');
-  const { isSafetyGlasses, parseDesignationWithSafety } = require('./safety.parser');
-  const { isClipOn, parseDesignationWithClipOn } = require('./clip-on.parser');
-
   // Try contact lenses first (most specific keywords)
   if (isContactLens(designation)) {
     const result = parseDesignationWithContactLens(designation);
@@ -773,3 +770,5 @@ export function parseUniversalDesignation(designation: string): IParsedProductIn
   // Default to Safilo/frame parsing
   return parseSafiloDesignation(designation);
 }
+
+export default parseUniversalDesignation
