@@ -4,9 +4,9 @@
  * against the product database.
  */
 
-import type { FrameSubType, ProductType } from '../models/product.model';
+import type { ProductType } from '../models/product.model';
 
-export type { FrameSubType, ProductType };
+export type { ProductType };
 
 /**
  * Method used to match a product.
@@ -14,7 +14,7 @@ export type { FrameSubType, ProductType };
 export type MatchMethod =
   | 'barcode'
   | 'supplierCode'
-  | 'manufacturerRef'
+  | 'externalReference'
   | 'fuzzyDesignation'
   | 'manual';
 
@@ -335,31 +335,6 @@ export function categoryToProductType(
     case 'accessory':
       return 'accessory';
     case 'unknown':
-    default:
-      return null;
-  }
-}
-
-/**
- * Converts a ProductCategory to a FrameSubType.
- * Used to determine the frame sub-type from OCR-detected category.
- * @param category The detected category from OCR parsing
- * @returns The corresponding FrameSubType, or null if not a frame
- */
-export function categoryToFrameSubType(
-  category: ProductCategory
-): FrameSubType | null {
-  switch (category) {
-    case 'optical':
-      return 'optical';
-    case 'sun':
-      return 'sun';
-    case 'safety':
-      return 'safety';
-    case 'sport':
-      return 'sport';
-    case 'reading':
-      return 'reading';
     default:
       return null;
   }
