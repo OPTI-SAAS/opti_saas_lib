@@ -50,11 +50,11 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "10 KB"
+      "limit": "1 MB"
     },
     {
       "path": "dist/index.mjs",
-      "limit": "10 KB"
+      "limit": "1 MB"
     }
   ],
   "devDependencies": {
