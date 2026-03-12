@@ -24,7 +24,7 @@ export interface IProductStockByWarehouse {
  * Product type - Option C hybrid approach.
  * Frames are unified under 'frame' with a subType for differentiation.
  */
-export type ProductType = 'frame' | 'lens' | 'contact_lens' | 'clip_on' | 'accessory';
+export type ProductType = 'frame' | 'lens' | 'contact_lens' | 'clipon' | 'accessory';
 
 export type ProductStatus =
   | 'DISPONIBLE'
@@ -34,7 +34,7 @@ export type ProductStatus =
   | 'RUPTURE'
   | 'OBSOLETE';
 
-export type PricingMode = 'coefficient' | 'fixedAmount' | 'fixedPrice';
+export type PricingMode = 'coefficient' | 'fixed-added-amount' | 'fixed-price';
 
 interface IBaseProduct {
   id: string;
@@ -42,11 +42,11 @@ interface IBaseProduct {
   barcode: string | null;
   productType: ProductType;
   designation: string;
-  brandId: string | null;
-  modelId: string | null;
+  brand: string | null;
+  model: string | null;
   color: string | null;
-  familyId: string | null;
-  alertThreshold: number;
+  family: string[];
+  minimumStockAlert: number;
 
   // Codes produits pour matching OCR
   externalReference: string | null;
@@ -55,9 +55,9 @@ interface IBaseProduct {
   // Pricing - Mode de calcul prix de vente
   pricingMode: PricingMode;
   coefficient: number | null;
-  fixedAmount: number | null;
+  fixedAddedAmount: number | null;
   fixedPrice: number | null;
-  tvaRate: number;
+  vatId: string | null;
 
   // Champs calculés (readonly après création)
   purchasePriceExclTax: number;
@@ -72,34 +72,35 @@ interface IBaseProduct {
 
 export interface IFrame extends IBaseProduct {
   productType: 'frame';
-  gender: string | null;
-  shape: string | null;
-  material: string | null;
-  mountingType: string | null;
-  hingeType: string | null;
-  caliber: number | null;
-  bridge: number | null;
-  branch: number | null;
+  frameGender: string | null;
+  frameShape: string | null;
+  frameMaterial: string | null;
+  frameType: string | null;
+  frameHingeType: string | null;
+  frameEyeSize: number | null;
+  frameBridge: number | null;
+  frameTemple: number | null;
+  frameFinish: string | null;
 }
 
 export interface ILens extends IBaseProduct {
   productType: 'lens';
   lensType: string;
-  material: string;
-  refractiveIndex: number | null;
-  tint: string | null;
-  treatments: string[];
-  manufacturer: string | null;
+  lensMaterial: string;
+  lensRefractiveIndex: number | null;
+  lensTint: string | null;
+  lensTreatments: string[];
+  lensFabricant: string | null;
 }
 
 export interface IContactLens extends IBaseProduct {
   productType: 'contact_lens';
   contactLensType: string;
-  usage: string;
-  manufacturer: string | null;
-  baseCurve: number;
-  diameter: number;
-  unitQuantity: number;
+  contactLensUsage: string;
+  contactLensFabricant: string | null;
+  contactLensBaseCurve: number;
+  contactLensDiameter: number;
+  contactLensQuantityPerBox: number;
 }
 
 export interface IAccessory extends IBaseProduct {
@@ -107,11 +108,11 @@ export interface IAccessory extends IBaseProduct {
 }
 
 export interface IClipOn extends IBaseProduct {
-  productType: 'clip_on';
-  clipType: string | null;
-  treatments: string[];
-  tint: string | null;
-  compatibleCaliber: string | null;
+  productType: 'clipon';
+  clipOnClipType: string | null;
+  clipOnTreatments: string[];
+  clipOnTint: string | null;
+  clipOnCompatibleCaliber: string | null;
 }
 
 export type Product = IFrame | ILens | IContactLens | IAccessory | IClipOn;

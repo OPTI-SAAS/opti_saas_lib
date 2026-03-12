@@ -8,3 +8,4 @@ export * from './model.model';
 export * from './product.model';
 export * from './resource.model';
 export * from './supplier.model';
+export * from './vat.model';

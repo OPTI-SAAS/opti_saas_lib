@@ -353,7 +353,7 @@ export function parseDesignationWithClipOn(designation: string): IParsedProductI
   if (clipOnInfo.color) confidence += 5;
   if (clipOnInfo.compatibleSize) confidence += 5;
 
-  const category: ProductCategory = 'clip_on';
+  const category: ProductCategory = 'clipon';
 
   return {
     ...result,

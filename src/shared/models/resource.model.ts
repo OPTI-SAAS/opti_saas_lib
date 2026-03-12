@@ -33,7 +33,6 @@ export const RESOURCE_TYPES = [
   'clipOnTypes',
   'clipOnTreatments',
   'civilites',
-  'tvaRates',
   'pricingModes',
 ] as const;
 

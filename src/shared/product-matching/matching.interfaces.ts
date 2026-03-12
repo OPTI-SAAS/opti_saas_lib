@@ -172,7 +172,7 @@ export type ProductCategory =
   | 'sport'
   | 'reading'
   | 'safety'
-  | 'clip_on'
+  | 'clipon'
   | 'ophthalmic_lens'
   | 'contact_lens'
   | 'accessory'
@@ -326,8 +326,8 @@ export function categoryToProductType(
     case 'sport':
     case 'safety':
       return 'frame';
-    case 'clip_on':
-      return 'clip_on';
+    case 'clipon':
+      return 'clipon';
     case 'ophthalmic_lens':
       return 'lens';
     case 'contact_lens':
